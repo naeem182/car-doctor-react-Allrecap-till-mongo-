@@ -1,8 +1,11 @@
+
+
 import { Link } from 'react-router-dom'
 import loginimg from '../../src/assets/images/login/login.svg'
+const SignUp = () => {
 
-const Login = () => {
-    const handlelogin = e => {
+
+    const handleSignUp = e => {
         e.preventDefault()
 
     }
@@ -13,8 +16,14 @@ const Login = () => {
                     <img src={loginimg} alt="" />
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 p-10">
-                    <h1 className="text-5xl font-bold text-center">Login </h1>
-                    <form onSubmit={handlelogin}>
+                    <h1 className="text-5xl font-bold text-center">Sign Up</h1>
+                    <form onSubmit={handleSignUp}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name='name' placeholder="Name" className="input input-bordered" required />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -31,14 +40,15 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <input className=' btn bg-orange-600 text-white hover:bg-slate-500' type="submit" value="login" />
+                            <input className=' btn bg-orange-600 text-white hover:bg-slate-500' type="submit" value="Sign Up" />
                         </div>
                     </form>
-                    <p className='py-4 text-center'>New to Car-doctors<Link className='text-orange-500 font bold' to='/signup'    >Sign Up</Link></p>
+                    <p className='py-4 text-center'>Already Have an Account<Link className='text-orange-500 font bold' to='/login'    >Sign in</Link></p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Login
+
+export default SignUp

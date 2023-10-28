@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BookingRow = ({ booking }) => {
+const BookingRow = ({ booking, handleDelete }) => {
     const { _id, date, service, price, img, status } = booking;
 
     return (

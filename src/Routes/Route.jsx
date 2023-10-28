@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import SignUp from "../Signup/SignUp";
 import Services from "../Pages/Services/Services";
 import Checkout from "../Pages/Checkout/Checkout";
+import PrivateRouter from "../PrivateRouter/PrivateRouter";
 
 const router = createBrowserRouter([
     {
@@ -34,19 +35,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/checkout/:id",
-                element: <Checkout />,
+                element: <PrivateRouter><Checkout />  </PrivateRouter>,
                 loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Fetch failed');
-                        }
-                        return response.json();
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        return null; // Handle the error as needed
-                    })
+
             },
+            // {
+            //     path: "/bookings",
+            //     element: <PrivateRouter><Checkout />  </PrivateRouter>,
+
+            // },
         ]
     },
 ]);

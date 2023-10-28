@@ -8,8 +8,8 @@ const Navbar = () => {
     const { user, logout } = useContext(Authcontex)
     const handlelognout = () => {
         logout()
-            .then(() => { })
-            .catch(error => console.log(error))
+            .then(() => console.log('user logged out successfully'))
+            .catch(error => console.error(error));
     }
     const NavLinks = <>
 

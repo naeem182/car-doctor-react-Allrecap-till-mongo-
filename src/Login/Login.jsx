@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import loginimg from '../../src/assets/images/login/login.svg'
 import { useContext } from 'react'
 import { Authcontex } from '../Provider/Authprovider'
+import axios from 'axios';
 
 const Login = () => {
     const { signin } = useContext(Authcontex)
@@ -18,15 +19,22 @@ const Login = () => {
         signin(email, password)
             .then((result) => {
                 // Signed in 
-                const user = result.user;
-                navigate(location?.state ? location.state : '/service');
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                console.log(error.message);
-            });
+                const loggeduser = result.user;
 
+                const user = { email }
+                // get access token
+                axios.post('http://localhost:5000/jwt', user)
+                    .then(res => {
+                        console.log(res.data)
+                        // if (res.data.success) {
+                        //     navigate(location?.state ? location?.state : '/service')
+                        // }
+                    })
+
+            })
+            .catch(error => console.log(error));
     }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">

@@ -3,6 +3,7 @@ import loginimg from '../../src/assets/images/login/login.svg'
 import { useContext } from 'react'
 import { Authcontex } from '../Provider/Authprovider'
 import axios from 'axios';
+import { linkWithCredential } from 'firebase/auth';
 
 const Login = () => {
     const { signin } = useContext(Authcontex)
@@ -23,7 +24,7 @@ const Login = () => {
 
                 const user = { email }
                 // get access token
-                axios.post('http://localhost:5000/jwt', user)
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                         // if (res.data.success) {
